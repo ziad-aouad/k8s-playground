@@ -1,0 +1,3 @@
+name: hello
+replicaCount: 1
+lang: fr

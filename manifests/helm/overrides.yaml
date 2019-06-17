@@ -1,0 +1,3 @@
+name: super-hello
+replicaCount: 3
+lang: es

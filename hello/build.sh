@@ -1,0 +1,1 @@
+docker build -t hello-multilang:1.0 .

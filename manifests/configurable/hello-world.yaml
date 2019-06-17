@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-world-service
+  labels:
+    app.kubernetes.io/name: hello
+    component: hello-world
+spec:
+  selector:
+    component: hello-world
+  ports:
+  - protocol: TCP
+    port: 9999 # The advertised port of the service
+    targetPort: 3000 # The port in the pods to forward to
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-world-deployment
+  labels:
+    component: hello-world
+    app.kubernetes.io/name: hello
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: hello-world
+  template:
+    metadata:
+      labels:
+        component: hello-world
+    spec:
+      containers:
+      - name: hello-world
+        image: hello-world-multilang:1.0
+        ports:
+        - containerPort: 3000 # specify which container port to open
+        env:
+        - name: HELLO_SVC
+          value: "http://hello-service:9999"
+        - name: WORLD_SVC
+          value: "http://world-service:9999"

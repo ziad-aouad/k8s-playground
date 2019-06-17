@@ -1,0 +1,1 @@
+docker build -t world-multilang:1.0 .

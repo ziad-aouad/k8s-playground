@@ -1,0 +1,15 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: test-ingress
+  annotations:
+    # nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-redirect: "false" # do not redirect http to https if no host specified in rules
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /hello-world
+        backend:
+          serviceName: hello-world-service
+          servicePort: 9999
