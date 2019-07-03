@@ -16,6 +16,25 @@ This guide assumes you understand the following concepts:
 * K8S deployments
 * K8S services
 
+## Chapter 0: Refresher
+
+![K8S Basics](images/k8s-basics-refresher.png)
+
+Very briefly, bottom-up:
+
+* Pods
+  * Are the atomic unit of execution and can execute on a single node.
+  * Naked pods are seldom used.
+  * Should not be targeted directly, because they are mortal and their IPs are not stable.
+  * They can be tagged with labels.
+
+* We use replica sets to deploy multiple replicas of identical hosts, in order to benefit from replication, self-healing, rolling updates, and probes.
+
+* To expose the functionality of deployments we use a service.
+  * Services have stable IPs and can be targeted.
+  * Services match their pods using labels.
+  * Services provide traffic load balancing.
+
 ## Chapter 1: Deploy a local cluster
 
 * Install [KIND](https://kind.sigs.k8s.io/docs/user/quick-start/) (K8S IN Docker).
